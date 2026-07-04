@@ -1,13 +1,15 @@
 from langgraph.graph import StateGraph, START, END
 from typing import TypedDict, Annotated
 from langchain_core.messages import BaseMessage
-from langchain_google_genai import ChatGoogleGenerativeAI
+# from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_anthropic import ChatAnthropic
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph.message import add_messages
 from dotenv import load_dotenv
 
 load_dotenv()
-llm = ChatGoogleGenerativeAI(model="gemini-3.1-flash-lite")
+# llm = ChatGoogleGenerativeAI(model="gemini-3.1-flash-lite")
+llm = ChatAnthropic(model="claude-haiku-4-5-20251001")
 
 class ChatState(TypedDict):
     messages: Annotated[list[BaseMessage], add_messages]
